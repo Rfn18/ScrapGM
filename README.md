@@ -12,9 +12,14 @@ Alat ini cocok untuk *B2B Lead Generation*, agensi *marketing*, pencarian data r
 - **🛡️ Built-in Filter Blacklist**: Mengabaikan email spam (seperti `info@`, `noreply@`) atau bisnis korporat besar (seperti Starbucks, KFC). Semuanya dapat dikonfigurasi melalui antarmuka.
 - **💾 Export to Excel**: Hasil akhir bisa didownload langsung dalam format `.xlsx` dengan rapi.
 
+## 🆕 Apa yang Baru (Migrasi ke Playwright)
+- **Kecepatan & Stabilitas:** *Scraper* kini menggunakan **Playwright** menggantikan Selenium. Playwright beroperasi jauh lebih cepat (tanpa memerlukan *ChromeDriver* eksternal) dan lebih andal menembus mekanisme *anti-bot* Google.
+- **Dukungan Asynchronous di Windows:** Sudah dilengkapi penyesuaian khusus (`ProactorEventLoop`) agar tidak *crash* ketika dijalankan secara asinkron dari dalam *Streamlit* di OS Windows.
+- **Pencarian Email Baru:** Ekstraksi email beroperasi di *tab* Playwright yang jauh lebih stabil dan efisien saat memindai isi *website*.
+
 ## 🛠️ Persyaratan Sistem
 - Python 3.8 atau lebih baru
-- Google Chrome terinstal di komputer/server Anda
+- Tidak perlu menginstal *ChromeDriver* lagi. Mesin *browser* internal (Chromium) akan diunduh secara otomatis pada saat dijalankan via `run.bat`.
 
 ## 🚀 Instalasi & Cara Penggunaan
 
@@ -24,10 +29,11 @@ Alat ini cocok untuk *B2B Lead Generation*, agensi *marketing*, pencarian data r
    cd MScrape
    ```
 
-2. **Instal dependensi Python:**
-   Pastikan Anda menjalankan perintah ini untuk menginstal semua *library* yang dibutuhkan.
+2. **Instal dependensi Python & Chromium:**
+   Pastikan Anda menjalankan perintah ini untuk menginstal semua *library* dan *browser* bawaan Playwright.
    ```bash
    pip install -r requirements.txt
+   playwright install chromium
    ```
 
 3. **Jalankan Aplikasi:**

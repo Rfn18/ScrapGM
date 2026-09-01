@@ -3,10 +3,16 @@ import pandas as pd
 import io
 import time
 import random
+import asyncio
+import sys
+
+# Fix Playwright NotImplementedError on Windows
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 from utils.constants import COUNTRY_CITIES, DEFAULT_EMAIL_BLACKLIST, DEFAULT_CHAIN_KEYWORDS
 from utils.text_helpers import normalize_country_name, is_chain, is_blacklisted_email
-from core.scraper import selenium_scrape_single
+from core.scraper import playwright_scrape_single
 
 # Inisialisasi blacklists di session state jika belum ada
 if "email_blacklist" not in st.session_state:
@@ -142,7 +148,7 @@ if btn_run:
                     for kw in keywords:
                         if len(all_results) >= 1000:
                             break
-                        final_data = selenium_scrape_single(kw, location, country, max_res_per_city // len(keywords) or 1, extract_email, email_blacklist, chain_blacklist)
+                        final_data = playwright_scrape_single(kw, location, country, max_res_per_city // len(keywords) or 1, extract_email, email_blacklist, chain_blacklist)
                         all_results.extend(final_data)
         else:
             if use_builtin:
@@ -176,7 +182,7 @@ if btn_run:
                     limit = min(max_per_city, needed, 50)
 
                     status_text.write(f"📍 {city} | {kw} (butuh {needed} lagi)...")
-                    city_data = selenium_scrape_single(kw, city, country, limit, extract_email, email_blacklist, chain_blacklist)
+                    city_data = playwright_scrape_single(kw, city, country, limit, extract_email, email_blacklist, chain_blacklist)
                     all_results.extend(city_data)
 
                     progress_pct = min(len(all_results) / total_target, 1.0)

@@ -1,0 +1,4 @@
+Backup_Selenium/
+__pycache__/
+*.pyc
+.env
