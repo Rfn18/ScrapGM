@@ -2,6 +2,10 @@
 
 Sebuah *tool* berbasis Python & Streamlit yang digunakan untuk mengambil (*scrape*) ribuan prospek/leads bisnis potensial dari Google Maps secara cepat dan otomatis. Didesain dengan antarmuka web (UI) agar mudah digunakan meski tanpa pengetahuan *coding*.
 
+## 📸 Tampilan Aplikasi
+![Tampilan Konfigurasi](assets/Screenshot_47.png)
+![Tampilan Hasil Scraping](assets/Screenshot_48.png)
+
 Alat ini cocok untuk *B2B Lead Generation*, agensi *marketing*, pencarian data restoran/kafe, dan *cold outreach*.
 
 ## ✨ Fitur Utama
